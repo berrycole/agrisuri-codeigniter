@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: agrisuri-demo
+    runtime: docker
+    plan: free
+    autoDeployTrigger: commit
+    healthCheckPath: /

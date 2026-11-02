@@ -1,0 +1,7 @@
+.git
+vendor
+writable/agrisuri.json
+writable/logs/*
+writable/cache/*
+writable/session/*
+tests

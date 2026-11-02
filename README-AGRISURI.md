@@ -25,3 +25,7 @@ Use **System scope → Reset sample records** to start again.
 ## Simulation boundaries
 
 This is a functional workflow prototype, not a production deployment. It uses local JSON storage and a single staff view. The System scope page identifies planned login and permissions, audited corrections, attachments, reminders, broader value-chain records, and reviewed AI assistance. All quantities, costs, and buyer details are sample data. The scenario estimate assumes 100 kg of packaging per day; it is not a trained forecast.
+
+## Public preview
+
+The included `Dockerfile` and `render.yaml` prepare this PHP app for a Render web service. On Render's free plan, the service sleeps after inactivity and its local JSON changes can disappear on restart. The sample case is recreated when it wakes; this is suitable for a shared demonstration, not for real operational records.
