@@ -31,3 +31,14 @@ This is a functional workflow prototype, not a production deployment. It uses lo
 ## Public preview
 
 The included `Dockerfile` and `render.yaml` prepare this PHP app for a Render web service. On Render's free plan, the service sleeps after inactivity and its local JSON changes can disappear on restart. The sample case is recreated when it wakes; this is suitable for a shared demonstration, not for real operational records.
+
+
+## Updated interface and workflow
+
+The CodeIgniter app and public browser simulation share `public/assets/app.js`, `dashboard.js`, and the CSS files. After changing shared assets, run `python tools/sync-preview.py` to refresh `docs/assets` for GitHub Pages. The PHP controller validates and persists server transactions; the public preview uses each visitor's local storage.
+
+The interface includes the proposal guide, pilot walkthrough, supply chart, harvest calendar, buyer matching, explicit scenario assumptions, intervention cost comparison, assigned follow-ups, handling cost events, batch allocations, searchable records, CSV export, and print layout. The English/Taglish draft helper is a rule-based simulation and does not call an AI service. Real authentication, verified corrections and attachments, full stock adjustments, external notifications, trained forecasting, and optional satellite evidence remain planned.
+
+The visual palette follows the supplied reference: `#ACAD2B`, `#BFE3FC`, `#F0F9FF`, `#28361F`, and `#596115`. Dashboard organization was informed by [Mosaic Lite](https://github.com/cruip/tailwind-dashboard-template) and the [analytics dashboard topic](https://github.com/topics/analytics-dashboard); this project keeps its CodeIgniter runtime and does not import the React template.
+
+Check the browser simulation with `node tools/test-simulation.cjs`. PHP workflow checks additionally exercised invalid reservations, inspection balance, packaging, allocation, buyer feedback, handling, and intervention outcomes against the running local server.
