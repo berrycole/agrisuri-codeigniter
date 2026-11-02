@@ -18,3 +18,4 @@ RUN composer install --no-dev --prefer-dist --no-interaction --optimize-autoload
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 ENV CI_ENVIRONMENT=production
 EXPOSE 10000
+CMD ["sh", "-c", "printf 'app.baseURL = \"%s/\"\\n' \"${RENDER_EXTERNAL_URL:-http://localhost:10000}\" > .env && exec apache2-foreground"]
