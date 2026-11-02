@@ -2,6 +2,8 @@
 
 A CodeIgniter 4 pilot walkthrough based on the AgriSuri brainstorming PDF. It uses sample milled-rice records and stores changes in `writable/agrisuri.json`.
 
+**Shareable preview:** https://berrycole.github.io/agrisuri-codeigniter/ — runs in each visitor's browser and keeps their sample changes locally. The CodeIgniter application is the PHP source in this repository.
+
 ## Run locally
 
 ```powershell
