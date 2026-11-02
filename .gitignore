@@ -63,6 +63,9 @@ Vagrantfile
 /writable/debugbar/*
 !/writable/debugbar/index.html
 
+# Local simulation data
+/writable/agrisuri.json
+
 php_errors.log
 
 #-------------------------
