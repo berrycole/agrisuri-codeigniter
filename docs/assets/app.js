@@ -1,7 +1,8 @@
 
 const today=new Date(), iso=d=>d.toISOString().slice(0,10), plus=n=>iso(new Date(today.getTime()+n*86400000));
 const seed=()=>({plans:[{id:'H-001',coop:'Cooperative A',qty:1000,date:plus(7)}],batches:[{id:'R-001',plan:'H-001',coop:'Cooperative A',received:900,cleared:800,held:100,packaged:400,reserved:0,cost:0}],requests:[{id:'B-001',buyer:'Sample buyer',qty:600,deadline:plus(5),packaging:'Packaged',location:'Cagayan de Oro',reserved:0,sent:0,accepted:0,rejected:0,price:0,payment:'Unpaid'}],cases:[{id:'C-001',request:'B-001',batch:'R-001',issue:'200 kg packaging gap',evidence:'R-001: 800 kg cleared, 400 kg packaged; B-001 needs 600 kg packaged.',action:'',owner:'',due:'',estimate:0,actual:0,outcome:''}],events:[{time:iso(today),text:'Demonstration case loaded.'}]});
-let d; try{d=window.AGRISURI_BOOTSTRAP||JSON.parse(localStorage.getItem('agrisuri-preview'))||seed()}catch{d=seed()}; let tab=new URLSearchParams(location.search).get('tab')||'overview', flash='';
+const storageKey=window.AGRISURI_STORAGE_KEY||'agrisuri-preview';
+let d; try{d=window.AGRISURI_BOOTSTRAP||JSON.parse(localStorage.getItem(storageKey))||seed()}catch{d=seed()}; let tab=new URLSearchParams(location.search).get('tab')||'overview', flash='';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); const sum=(rows,key)=>rows.reduce((a,r)=>a+Number(r[key]||0),0), by=(rows,id)=>rows.find(x=>x.id===id), num=(v)=>Math.max(0,Number(v)||0), next=(prefix,rows)=>prefix+'-'+String(rows.length+1).padStart(3,'0');
 const input=(name,label,type='text',value='',extra='')=>`<label>${label}<input name="${name}" type="${type}" value="${esc(value)}" ${extra}></label>`;
 const select=(name,label,rows)=>`<label>${label}<select name="${name}">${rows.map(r=>`<option value="${esc(r.id)}">${esc(r.id)} · ${esc(r.coop||r.buyer||r.issue||'')}</option>`).join('')}</select></label>`;
@@ -29,4 +30,4 @@ case 'outcome':{let c=by(d.cases,p.get('case'));if(!c||!p.get('outcome'))throw E
 case 'delivery':{let r=by(d.requests,p.get('request'));if(!r||q('sent')<=0||q('sent')>r.reserved||Math.abs(q('accepted')+q('rejected')-q('sent'))>0.001)throw Error('Dispatch needs reserved stock; accepted plus rejected must account for the dispatched quantity.');r.sent=q('sent');r.accepted=q('accepted');r.rejected=q('rejected');r.price=q('price');r.payment=p.get('payment');msg='Buyer feedback recorded.'}break;
 case 'handling':{let b=by(d.batches,p.get('batch'));if(!b||!p.get('location')||!p.get('notes'))throw Error('Select a batch, location and observed handling event.');b.location=p.get('location');b.cost+=q('cost');msg=b.id+' handling at '+b.location+': '+p.get('notes')+' · Recorded cost '+q('cost')+' PHP'}break;
 case 'reset':d=seed();msg='Your sample records were reset.';break;
-default:throw Error('Unknown action.')}d.events.push({time:iso(new Date()),text:msg});localStorage.setItem('agrisuri-preview',JSON.stringify(d));return msg}
+default:throw Error('Unknown action.')}d.events.push({time:iso(new Date()),text:msg});localStorage.setItem(storageKey,JSON.stringify(d));return msg}

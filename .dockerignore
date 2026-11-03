@@ -1,6 +1,6 @@
 .git
 vendor
-writable/agrisuri.json
+writable/agrisuri*.json
 writable/logs/*
 writable/cache/*
 writable/session/*

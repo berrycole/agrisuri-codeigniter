@@ -3,7 +3,8 @@ namespace App\Controllers;
 
 class Simulation extends BaseController
 {
-    private function path(): string { return WRITEPATH . 'agrisuri.json'; }
+    private bool $friendlyMode=false;
+    private function path(): string { return WRITEPATH . ($this->friendlyMode || $this->request->getPost('workspace')==='friendly' ? 'agrisuri-friendly.json' : 'agrisuri.json'); }
     private function seed(): array { return [
         'plans'=>[['id'=>'H-001','coop'=>'Cooperative A','qty'=>1000,'date'=>date('Y-m-d',strtotime('+7 days'))]],
         'batches'=>[['id'=>'R-001','plan'=>'H-001','coop'=>'Cooperative A','received'=>900,'cleared'=>800,'held'=>100,'packaged'=>400,'reserved'=>0,'cost'=>0]],
@@ -18,6 +19,12 @@ class Simulation extends BaseController
         $html=file_get_contents(ROOTPATH.'docs/index.html');
         $bootstrap='<script>window.AGRISURI_BOOTSTRAP='.json_encode($this->load(), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT).';</script>';
         return str_replace(['<!--BOOTSTRAP-->','href="assets/','src="assets/'],[$bootstrap,'href="/assets/','src="/assets/'],$html);
+    }
+    public function friendly() {
+        $this->friendlyMode=true;
+        $html=file_get_contents(ROOTPATH.'docs/friendly/index.html');
+        $bootstrap='<script>window.AGRISURI_BOOTSTRAP='.json_encode($this->load(), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT).';</script>';
+        return str_replace(['<!--BOOTSTRAP-->','href="../assets/','src="../assets/'],[$bootstrap,'href="/assets/','src="/assets/'],$html);
     }
     public function action() {
         $d=$this->load(); $p=$this->request->getPost(); $type=$p['type']??''; $tab=$p['tab']??'overview'; $q=fn($k)=>max(0,(float)($p[$k]??0)); $msg='Record saved.'; $error=null;

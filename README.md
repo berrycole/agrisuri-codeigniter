@@ -42,3 +42,12 @@ The interface includes the proposal guide, pilot walkthrough, supply chart, harv
 The visual palette follows the supplied reference: `#ACAD2B`, `#BFE3FC`, `#F0F9FF`, `#28361F`, and `#596115`. Dashboard organization was informed by [Mosaic Lite](https://github.com/cruip/tailwind-dashboard-template) and the [analytics dashboard topic](https://github.com/topics/analytics-dashboard); this project keeps its CodeIgniter runtime and does not import the React template.
 
 Check the browser simulation with `node tools/test-simulation.cjs`. PHP workflow checks additionally exercised invalid reservations, inspection balance, packaging, allocation, buyer feedback, handling, and intervention outcomes against the running local server.
+
+
+## Version 2: guided proposal
+
+Open https://berrycole.github.io/agrisuri-codeigniter/friendly/ for the second version. The original operations dashboard remains at the main URL.
+
+The second version has a six-scene proposal story and a five-step working simulation with plain-language explanations. Its records are separate from the original version. Locally, use http://localhost:8080/friendly/ to run it through CodeIgniter. It shares the same stock rules, PHP transaction controller, and browser simulation engine. AI integration and full account permissions remain planned.
+
+Frontend UI Engineering from [Addy Osmani's agent skills](https://github.com/addyosmani/agent-skills/tree/main/skills/frontend-ui-engineering) informed the layout, focus states, responsive checks, and error feedback. See `notes/friendly-design.md` for the design contract.

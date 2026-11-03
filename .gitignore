@@ -65,6 +65,7 @@ Vagrantfile
 
 # Local simulation data
 /writable/agrisuri.json
+/writable/agrisuri-friendly.json
 
 php_errors.log
 
