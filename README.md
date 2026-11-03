@@ -51,3 +51,14 @@ Open https://berrycole.github.io/agrisuri-codeigniter/friendly/ for the second v
 The second version has a six-scene proposal story and a five-step working simulation with plain-language explanations. Its records are separate from the original version. Locally, use http://localhost:8080/friendly/ to run it through CodeIgniter. It shares the same stock rules, PHP transaction controller, and browser simulation engine. AI integration and full account permissions remain planned.
 
 Frontend UI Engineering from [Addy Osmani's agent skills](https://github.com/addyosmani/agent-skills/tree/main/skills/frontend-ui-engineering) informed the layout, focus states, responsive checks, and error feedback. See `notes/friendly-design.md` for the design contract.
+
+
+## Version 3: connected master workflow
+
+Open https://berrycole.github.io/agrisuri-codeigniter/workflow/ for the color-coded master workflow. Locally, the CodeIgniter route is http://localhost:8080/workflow/.
+
+This version follows the updated seven-stage reference and the separate bottleneck decision loop. It adds registration correction/approval, draft verification, environmental ground-check branches, processing yield, stock status, all four match classifications, evidence tasks, manager-approved interventions, logistics reconciliation, buyer incidents, accepted sales, and close/reopen evaluation. Each color has a text label.
+
+Version 3 is an isolated browser simulation, including when served by CodeIgniter. Verified events are saved to local demo storage. It does not connect to an AI service, satellite provider, weather API or production database. Planned functions are identified in each stage. See `notes/master-workflow.md` for scope and architecture.
+
+Run `node tools/test-master-workflow.cjs` for the new workflow's business-rule checks. Use `python tools/sync-preview.py` after changing shared assets before publishing.
